@@ -3,7 +3,7 @@ const { Readable } = require('stream');
 
 class UploadService {
   // Upload single image
-  async uploadImage(file, folder = 'zuna-watch') {
+  async uploadImage(file, folder = 'minh-yen-watch') {
     return new Promise((resolve, reject) => {
       if (!file) {
         return reject(new Error('No file provided'));
@@ -42,7 +42,7 @@ class UploadService {
   }
 
   // Upload multiple images
-  async uploadMultipleImages(files, folder = 'zuna-watch') {
+  async uploadMultipleImages(files, folder = 'minh-yen-watch') {
     try {
       const uploadPromises = files.map(file => this.uploadImage(file, folder));
       const results = await Promise.all(uploadPromises);
@@ -73,7 +73,7 @@ class UploadService {
   }
 
   // Upload image with specific transformations
-  async uploadImageWithTransformations(file, folder = 'zuna-watch', transformations = {}) {
+  async uploadImageWithTransformations(file, folder = 'minh-yen-watch', transformations = {}) {
     return new Promise((resolve, reject) => {
       if (!file) {
         return reject(new Error('No file provided'));

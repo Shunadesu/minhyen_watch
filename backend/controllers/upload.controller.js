@@ -10,7 +10,7 @@ exports.uploadSingle = async (req, res) => {
       });
     }
 
-    const folder = req.body.folder || 'zuna-watch';
+    const folder = req.body.folder || 'minh-yen-watch';
     const result = await uploadService.uploadImage(req.file, folder);
 
     res.json({
@@ -35,7 +35,7 @@ exports.uploadMultiple = async (req, res) => {
       });
     }
 
-    const folder = req.body.folder || 'zuna-watch';
+    const folder = req.body.folder || 'minh-yen-watch';
     const results = await uploadService.uploadMultipleImages(req.files, folder);
 
     res.json({

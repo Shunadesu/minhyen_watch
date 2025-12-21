@@ -50,7 +50,7 @@ const Layout = ({ children }) => {
         <div className="flex flex-col h-full">
           {/* Logo */}
           <div className="flex items-center justify-between p-6 border-b">
-            <h1 className="text-xl font-bold text-primary-600">Zuna Watch</h1>
+            <h1 className="text-xl font-bold text-primary-600">Minh Yên Watch</h1>
             <button
               onClick={() => setSidebarOpen(false)}
               className="lg:hidden text-gray-500 hover:text-gray-700"

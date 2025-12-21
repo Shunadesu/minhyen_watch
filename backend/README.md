@@ -1,4 +1,4 @@
-# Backend API - Zuna Watch E-commerce
+# Backend API - Minh Yên Watch E-commerce
 
 Backend API cho website bán đồng hồ cao cấp sử dụng MERN Stack với chức năng web scraping.
 

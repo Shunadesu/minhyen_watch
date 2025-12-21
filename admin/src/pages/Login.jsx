@@ -43,7 +43,7 @@ const Login = () => {
             <LogIn className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-3xl font-bold text-gray-900">Admin Panel</h1>
-          <p className="text-gray-600 mt-2">Zuna Watch Management</p>
+          <p className="text-gray-600 mt-2">Minh Yên Watch Management</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">

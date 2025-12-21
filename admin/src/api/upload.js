@@ -2,7 +2,7 @@ import api from './axios';
 
 export const uploadAPI = {
   // Upload single image
-  uploadSingle: async (file, folder = 'zuna-watch') => {
+  uploadSingle: async (file, folder = 'minh-yen-watch') => {
     const formData = new FormData();
     formData.append('image', file);
     if (folder) {
@@ -18,7 +18,7 @@ export const uploadAPI = {
   },
 
   // Upload multiple images
-  uploadMultiple: async (files, folder = 'zuna-watch') => {
+  uploadMultiple: async (files, folder = 'minh-yen-watch') => {
     const formData = new FormData();
     files.forEach((file) => {
       formData.append('images', file);

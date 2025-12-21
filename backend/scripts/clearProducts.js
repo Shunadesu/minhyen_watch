@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Product = require('../models/Product');
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/zuna-watch', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/minh-yen-watch', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })

@@ -1,5 +1,5 @@
 {
-  "name": "zuna-watch-backend",
+  "name": "minh-yen-watch-backend",
   "version": "1.0.0",
   "description": "Backend API for luxury watch e-commerce website",
   "main": "server.js",
@@ -17,8 +17,6 @@
     "check:brands": "node scripts/checkProductBrands.js",
     "clear:products": "node scripts/clearProducts.js",
     "create:admin": "node scripts/createAdmin.js",
-    "test:brands": "node scripts/testScrapeBrands.js",
-    "test:products": "node scripts/testScrapeProducts.js",
     "test:images": "node scripts/testImageScraping.js"
   },
   "keywords": ["watch", "ecommerce", "mern"],
