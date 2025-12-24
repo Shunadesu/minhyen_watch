@@ -5,6 +5,7 @@ import {
   Package,
   Tag,
   Award,
+  ClipboardList,
   LogOut,
   Menu,
   X,
@@ -29,6 +30,7 @@ const Layout = ({ children }) => {
     { icon: Package, label: 'Sản phẩm', path: '/products' },
     { icon: Tag, label: 'Danh mục', path: '/categories' },
     { icon: Award, label: 'Thương hiệu', path: '/brands' },
+    { icon: ClipboardList, label: 'Dịch vụ', path: '/services' },
   ];
 
   return (

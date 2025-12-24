@@ -5,6 +5,7 @@ const { protect, authorize } = require('../middleware/auth.middleware');
 
 // Public routes
 router.get('/', categoryController.getAllCategories);
+router.get('/featured', categoryController.getFeaturedCategories);
 router.get('/:id', categoryController.getCategoryById);
 router.get('/:id/products', categoryController.getCategoryProducts);
 

@@ -10,14 +10,7 @@ const app = express();
 
 // Middleware
 app.use(helmet());
-app.use(cors({
-  origin: [
-    process.env.FRONTEND_URL || 'http://localhost:3000',
-    'http://localhost:1010', // Admin panel
-    'http://localhost:1011'  // Backend (for development)
-  ],
-  credentials: true
-}));
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -35,6 +28,8 @@ app.use('/api/brands', require('./routes/brand.routes'));
 app.use('/api/scrape', require('./routes/scrape.routes'));
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/upload', require('./routes/upload.routes'));
+app.use('/api/services', require('./routes/service.routes'));
+app.use('/api/orders', require('./routes/order.routes'));
 
 // Health check
 app.get('/api/health', (req, res) => {
@@ -67,7 +62,7 @@ app.use((err, req, res, next) => {
 });
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/minh-yen-watch', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb+srv://phonghaihoang470_db_user:M7GpQOTAji2SmYAa@cluster0.w4p1bxa.mongodb.net/?appName=Cluster0', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })

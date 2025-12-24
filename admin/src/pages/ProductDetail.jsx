@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { ArrowLeft, Edit, Trash2, Image as ImageIcon, X, ZoomIn, Maximize2, CheckSquare, Square } from 'lucide-react';
+import { ArrowLeft, Edit, Trash2, Image as ImageIcon, X, ZoomIn, Maximize2, CheckSquare, Square, Flame, Crown } from 'lucide-react';
 import { productsAPI } from '../api/products';
 import toast from 'react-hot-toast';
 
@@ -465,8 +465,8 @@ const ProductDetail = () => {
               )}
             </div>
 
-            {/* Status */}
-            <div className="mb-6">
+            {/* Status / Flags */}
+            <div className="mb-6 flex flex-wrap gap-2">
               <span
                 className={`inline-block px-4 py-2 rounded-full text-sm font-semibold ${
                   product.status === 'available'
@@ -476,6 +476,18 @@ const ProductDetail = () => {
               >
                 {product.status === 'available' ? 'Có sẵn' : 'Hết hàng'}
               </span>
+              {product.isHot && (
+                <span className="inline-flex items-center space-x-1 rounded-full bg-orange-50 px-3 py-1 text-sm font-semibold text-orange-700">
+                  <Flame className="h-4 w-4" />
+                  <span>Hot</span>
+                </span>
+              )}
+              {product.isExclusive && (
+                <span className="inline-flex items-center space-x-1 rounded-full bg-emerald-50 px-3 py-1 text-sm font-semibold text-emerald-700">
+                  <Crown className="h-4 w-4" />
+                  <span>Độc quyền</span>
+                </span>
+              )}
             </div>
 
             {/* Brand & Category */}

@@ -4,8 +4,15 @@ const Product = require('../models/Product');
 // Get all categories
 exports.getAllCategories = async (req, res) => {
   try {
-    const categories = await Category.find({ isActive: true })
-      .sort({ name: 1 });
+    const filter = { isActive: true };
+    if (req.query.isFeaturedHome) {
+      filter.isFeaturedHome = req.query.isFeaturedHome === 'true';
+    }
+    const limit = parseInt(req.query.limit) || null;
+
+    const categoriesQuery = Category.find(filter).sort({ name: 1 });
+    if (limit) categoriesQuery.limit(limit);
+    const categories = await categoriesQuery;
 
     // Get product count for each category
     const categoriesWithCount = await Promise.all(
@@ -26,6 +33,19 @@ exports.getAllCategories = async (req, res) => {
       success: true,
       data: categoriesWithCount
     });
+  } catch (error) {
+    res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+};
+
+// Get featured categories for home
+exports.getFeaturedCategories = async (req, res) => {
+  try {
+    req.query.isFeaturedHome = 'true';
+    return exports.getAllCategories(req, res);
   } catch (error) {
     res.status(500).json({
       success: false,

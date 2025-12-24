@@ -84,6 +84,14 @@ const productSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
+  isHot: {
+    type: Boolean,
+    default: false
+  },
+  isExclusive: {
+    type: Boolean,
+    default: false
+  },
   views: {
     type: Number,
     default: 0
@@ -99,6 +107,8 @@ productSchema.index({ category: 1 });
 productSchema.index({ status: 1 });
 productSchema.index({ price: 1 });
 productSchema.index({ createdAt: -1 });
+productSchema.index({ isHot: 1 });
+productSchema.index({ isExclusive: 1 });
 
 module.exports = mongoose.model('Product', productSchema);
 

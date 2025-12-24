@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Plus, Edit, Trash2, Image as ImageIcon, X, Package } from 'lucide-react';
+import { Plus, Edit, Trash2, Image as ImageIcon, X, Package, Star } from 'lucide-react';
 import { categoriesAPI } from '../api/categories';
 import { uploadAPI } from '../api/upload';
 import { CategorySkeleton } from '../components/Skeleton';
@@ -13,7 +13,8 @@ const Categories = () => {
   const [formData, setFormData] = useState({
     name: '',
     description: '',
-    image: ''
+    image: '',
+    isFeaturedHome: false
   });
   const [uploadingImage, setUploadingImage] = useState(false);
 
@@ -51,14 +52,16 @@ const Categories = () => {
       setFormData({
         name: category.name || '',
         description: category.description || '',
-        image: category.image || ''
+        image: category.image || '',
+        isFeaturedHome: category.isFeaturedHome || false
       });
     } else {
       setEditingCategory(null);
       setFormData({
         name: '',
         description: '',
-        image: ''
+        image: '',
+        isFeaturedHome: false
       });
     }
     setIsModalOpen(true);
@@ -70,7 +73,8 @@ const Categories = () => {
     setFormData({
       name: '',
       description: '',
-      image: ''
+      image: '',
+      isFeaturedHome: false
     });
   };
 
@@ -202,7 +206,22 @@ const Categories = () => {
                     </div>
 
                     {/* Actions */}
-                    <div className="flex items-center space-x-2 flex-shrink-0">
+                  <div className="flex items-center space-x-2 flex-shrink-0">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        categoriesAPI.update(category._id, { isFeaturedHome: !category.isFeaturedHome })
+                          .then(() => {
+                            toast.success('Đã cập nhật hiển thị Home');
+                            fetchCategories();
+                          })
+                          .catch(() => toast.error('Lỗi cập nhật hiển thị Home'));
+                      }}
+                      className={`p-2 rounded ${category.isFeaturedHome ? 'bg-yellow-50 text-yellow-700' : 'text-gray-500 hover:text-yellow-700 hover:bg-yellow-50'}`}
+                      title="Hiển thị trên trang Home"
+                    >
+                      <Star className="w-5 h-5" />
+                    </button>
                       <button
                         onClick={() => handleOpenModal(category)}
                         className="text-primary-600 hover:text-primary-800 p-2 hover:bg-primary-50 rounded transition-colors"

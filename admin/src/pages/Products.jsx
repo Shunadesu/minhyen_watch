@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Plus, Edit, Trash2, Search, Image as ImageIcon, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Plus, Edit, Trash2, Search, Image as ImageIcon, ChevronLeft, ChevronRight, Flame, Crown } from 'lucide-react';
 import { productsAPI } from '../api/products';
 import { ProductSkeleton } from '../components/Skeleton';
 import toast from 'react-hot-toast';
@@ -31,6 +31,16 @@ const Products = () => {
       toast.error('Lỗi khi tải sản phẩm');
     } finally {
       setLoading(false);
+    }
+  };
+
+  const handleToggleFlag = async (id, key, value) => {
+    try {
+      await productsAPI.update(id, { [key]: value });
+      toast.success('Đã cập nhật');
+      fetchProducts();
+    } catch (error) {
+      toast.error('Lỗi khi cập nhật');
     }
   };
 
@@ -181,6 +191,18 @@ const Products = () => {
                             >
                               {product.status === 'available' ? 'Có sẵn' : 'Hết hàng'}
                             </span>
+                            {product.isHot && (
+                              <span className="inline-flex items-center space-x-1 rounded-full bg-orange-50 px-2 py-1 font-semibold text-orange-700">
+                                <Flame className="h-3 w-3" />
+                                <span>Hot</span>
+                              </span>
+                            )}
+                            {product.isExclusive && (
+                              <span className="inline-flex items-center space-x-1 rounded-full bg-emerald-50 px-2 py-1 font-semibold text-emerald-700">
+                                <Crown className="h-3 w-3" />
+                                <span>Độc quyền</span>
+                              </span>
+                            )}
                           </div>
 
                           {/* Description */}
@@ -209,6 +231,26 @@ const Products = () => {
                             className="flex items-center space-x-2"
                             onClick={(e) => e.stopPropagation()}
                           >
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleToggleFlag(product._id, 'isHot', !product.isHot);
+                              }}
+                              className={`p-2 rounded ${product.isHot ? 'bg-orange-50 text-orange-700' : 'text-gray-500 hover:text-orange-700 hover:bg-orange-50'}`}
+                              title="Đánh dấu Hot"
+                            >
+                              <Flame className="w-5 h-5" />
+                            </button>
+                            <button
+                              onClick={(e) => {
+                                e.stopPropagation();
+                                handleToggleFlag(product._id, 'isExclusive', !product.isExclusive);
+                              }}
+                              className={`p-2 rounded ${product.isExclusive ? 'bg-emerald-50 text-emerald-700' : 'text-gray-500 hover:text-emerald-700 hover:bg-emerald-50'}`}
+                              title="Đánh dấu Độc quyền"
+                            >
+                              <Crown className="w-5 h-5" />
+                            </button>
                             <button
                               onClick={(e) => {
                                 e.stopPropagation();

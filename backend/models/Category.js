@@ -20,6 +20,10 @@ const categorySchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  isFeaturedHome: {
+    type: Boolean,
+    default: false
+  },
   parentId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Category',
@@ -44,6 +48,7 @@ const categorySchema = new mongoose.Schema({
 // Index for faster queries
 categorySchema.index({ slug: 1 });
 categorySchema.index({ parentId: 1 });
+categorySchema.index({ isFeaturedHome: 1 });
 
 module.exports = mongoose.model('Category', categorySchema);
 

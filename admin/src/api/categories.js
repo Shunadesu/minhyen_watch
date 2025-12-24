@@ -1,8 +1,8 @@
 import api from './axios';
 
 export const categoriesAPI = {
-  getAll: async () => {
-    const response = await api.get('/categories');
+  getAll: async (params = {}) => {
+    const response = await api.get('/categories', { params });
     return response.data;
   },
   

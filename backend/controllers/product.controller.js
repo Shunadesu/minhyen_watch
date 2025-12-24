@@ -14,11 +14,13 @@ exports.getAllProducts = async (req, res) => {
     if (req.query.status) filter.status = req.query.status;
     if (req.query.minPrice) filter.price = { ...filter.price, $gte: parseInt(req.query.minPrice) };
     if (req.query.maxPrice) filter.price = { ...filter.price, $lte: parseInt(req.query.maxPrice) };
+    if (req.query.isHot) filter.isHot = req.query.isHot === 'true';
+    if (req.query.isExclusive) filter.isExclusive = req.query.isExclusive === 'true';
     if (req.query.condition) filter.condition = req.query.condition;
     filter.isActive = true;
 
-    // Build sort
-    let sort = { createdAt: -1 };
+    // Build sort (default: cũ lên đầu -> createdAt tăng dần)
+    let sort = { createdAt: 1 };
     if (req.query.sort) {
       switch (req.query.sort) {
         case 'price-asc':
@@ -92,6 +94,38 @@ exports.getProductById = async (req, res) => {
       success: false,
       message: error.message
     });
+  }
+};
+
+// Get hot products
+exports.getHotProducts = async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 8;
+    const products = await Product.find({ isActive: true, isHot: true })
+      .populate('brand', 'name slug logo')
+      .populate('category', 'name slug')
+      .sort({ createdAt: -1 })
+      .limit(limit);
+
+    res.json({ success: true, data: products });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+// Get exclusive products
+exports.getExclusiveProducts = async (req, res) => {
+  try {
+    const limit = parseInt(req.query.limit) || 8;
+    const products = await Product.find({ isActive: true, isExclusive: true })
+      .populate('brand', 'name slug logo')
+      .populate('category', 'name slug')
+      .sort({ createdAt: -1 })
+      .limit(limit);
+
+    res.json({ success: true, data: products });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 
