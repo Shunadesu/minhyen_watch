@@ -16,7 +16,7 @@ const BrandsPage = () => {
       try {
         setLoading(true);
         setError('');
-        const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:1011';
+        const baseUrl = import.meta.env.VITE_API_URL || '';
         const res = await fetch(`${baseUrl}/api/brands?page=1&limit=100`);
         const json = await res.json();
         if (!json.success) {

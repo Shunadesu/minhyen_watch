@@ -46,7 +46,7 @@ const ProductsPage = () => {
 
   // fetch list categories/brands for filters
   useEffect(() => {
-    const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:1011';
+        const baseUrl = import.meta.env.VITE_API_URL || '';
     const load = async () => {
       try {
         const [catsRes, brandsRes] = await Promise.all([

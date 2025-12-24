@@ -17,7 +17,7 @@ const Collections = () => {
     const fetchCategories = async () => {
       try {
         setLoading(true);
-        const baseUrl = import.meta.env.VITE_API_URL || 'http://localhost:1011';
+        const baseUrl = import.meta.env.VITE_API_URL || '';
         const fetchWithFilter = async (url) => {
           const res = await fetch(url);
           return res.json();

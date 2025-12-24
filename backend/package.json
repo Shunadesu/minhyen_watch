@@ -5,19 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "dev": "nodemon server.js",
-    "scrape": "node scripts/scrapeFresh.js",
-    "scrape:fresh": "node scripts/scrapeFresh.js",
-    "scrape:products": "node scripts/scrapeProductsAccurate.js",
-    "scrape:categories": "node scripts/scrapeCategories.js",
-    "scrape:brands": "node scripts/scrapeBrands.js",
-    "extract:brands": "node scripts/extractBrandsFromProducts.js",
-    "improve:brands": "node scripts/improveBrandExtraction.js",
-    "analyze:brands": "node scripts/analyzeBrandProductRelation.js",
-    "check:brands": "node scripts/checkProductBrands.js",
-    "clear:products": "node scripts/clearProducts.js",
-    "create:admin": "node scripts/createAdmin.js",
-    "test:images": "node scripts/testImageScraping.js"
+    "dev": "nodemon server.js"
   },
   "keywords": ["watch", "ecommerce", "mern"],
   "author": "",
