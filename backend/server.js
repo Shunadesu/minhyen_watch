@@ -14,10 +14,17 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Rate limiting
+// Rate limiting - Tăng limit để tránh lỗi 429
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100 // limit each IP to 100 requests per windowMs
+  max: 50000, // Tăng từ 100 lên 50000 requests per windowMs
+  message: 'Quá nhiều requests, vui lòng thử lại sau',
+  standardHeaders: true,
+  legacyHeaders: false,
+  skip: (req) => {
+    // Skip rate limiting cho health check
+    return req.path === '/api/health';
+  }
 });
 app.use('/api/', limiter);
 

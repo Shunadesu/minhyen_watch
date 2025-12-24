@@ -86,11 +86,16 @@ const Header = () => {
     const loadServices = async () => {
       try {
         const res = await servicesAPI.getAll();
-        if (!res.success) throw new Error(res.message || 'Không thể tải dịch vụ');
+        // Nếu rate limit hoặc lỗi, dùng fallback
+        if (!res.success || res.isRateLimit) {
+          setServices(fallbackServices);
+          setServiceError('');
+          return;
+        }
         setServices(res.data || fallbackServices);
         setServiceError('');
       } catch (err) {
-        // Dùng fallback tĩnh để không hiện lỗi 404 trong dropdown
+        // Dùng fallback tĩnh để không hiện lỗi trong dropdown
         setServices(fallbackServices);
         setServiceError('');
       }

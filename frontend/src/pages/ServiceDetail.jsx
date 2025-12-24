@@ -20,6 +20,11 @@ const ServiceDetail = () => {
         setLoading(true);
         setError('');
         const res = await servicesAPI.getBySlug(slug);
+        // Xử lý rate limit
+        if (res.isRateLimit) {
+          setError('Quá nhiều requests, vui lòng thử lại sau vài giây');
+          return;
+        }
         if (!res.success) throw new Error(res.message || 'Không thể tải dịch vụ');
         setData(res.data);
       } catch (err) {

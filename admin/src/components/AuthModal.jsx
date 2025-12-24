@@ -121,7 +121,7 @@ const AuthModal = ({ forceOpen = false }) => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-white transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60 shadow-md"
+            className="w-full rounded-xl bg-primary px-4 py-3 text-sm font-semibold text-black transition hover:bg-primary/90 disabled:cursor-not-allowed disabled:opacity-60 shadow-md"
           >
             {loading ? 'Đang xử lý...' : mode === 'login' ? 'Đăng nhập' : 'Đăng ký'}
           </button>
