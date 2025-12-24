@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { FiArrowLeft, FiCheck, FiSettings, FiWrench, FiZap, FiAward } from 'react-icons/fi';
+import { FiArrowLeft, FiCheck, FiSettings, FiTool, FiAward } from 'react-icons/fi';
 import { useNavigate } from 'react-router-dom';
 
 const ServiceRepair = () => {
@@ -108,7 +108,7 @@ const ServiceRepair = () => {
           </div>
           <div className="rounded-2xl border border-gray-100 bg-white p-6 text-center shadow-soft">
             <div className="mx-auto mb-4 inline-flex h-16 w-16 items-center justify-center rounded-full bg-accent/10">
-              <FiWrench className="h-8 w-8 text-accent" />
+              <FiTool className="h-8 w-8 text-accent" />
             </div>
             <h3 className="font-display text-lg font-semibold text-primary">Chính hãng</h3>
             <p className="mt-2 text-sm text-muted">Linh kiện thay thế chính hãng, đảm bảo chất lượng</p>
