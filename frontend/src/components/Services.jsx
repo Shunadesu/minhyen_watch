@@ -1,21 +1,31 @@
-import { FiShoppingBag, FiSend, FiShield } from 'react-icons/fi';
+import { FiShoppingBag, FiSend, FiShield, FiSettings } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 const services = [
   {
     icon: FiShoppingBag,
     title: 'Thu mua & ký gửi',
-    description: 'Định giá minh bạch, quy trình nhanh, bảo mật thông tin khách hàng.'
+    description: 'Định giá minh bạch, quy trình nhanh, bảo mật thông tin khách hàng.',
+    link: '/dichvu/thu-mua-ky-gui'
   },
   {
     icon: FiSend,
     title: 'Đấu giá & đối tác',
-    description: 'Kết nối Antiquorum và các nhà đấu giá quốc tế cho các phiên bản hiếm.'
+    description: 'Kết nối Antiquorum và các nhà đấu giá quốc tế cho các phiên bản hiếm.',
+    link: '/dichvu/dau-gia-doi-tac'
   },
   {
     icon: FiShield,
     title: 'Hậu mãi & bảo hành',
-    description: 'Kiểm định, bảo dưỡng, làm mới dây, chống nước và bảo hành chuẩn hãng.'
+    description: 'Kiểm định, bảo dưỡng, làm mới dây, chống nước và bảo hành chuẩn hãng.',
+    link: '/dichvu/hau-mai-bao-hanh'
+  },
+  {
+    icon: FiSettings,
+    title: 'Bảo dưỡng & sửa chữa',
+    description: 'Sửa chữa chuyên sâu, thay thế linh kiện chính hãng, khôi phục đồng hồ cổ.',
+    link: '/dichvu/bao-duong-sua-chua'
   }
 ];
 
@@ -38,7 +48,7 @@ const Services = () => {
             Đáp ứng cả nhu cầu sưu tầm, trao đổi và hậu mãi cho đồng hồ cao cấp.
           </p>
         </motion.div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {services.map((service) => (
             <motion.div
               key={service.title}
@@ -53,9 +63,12 @@ const Services = () => {
               </div>
               <h3 className="font-display text-xl font-semibold text-primary">{service.title}</h3>
               <p className="mt-3 text-sm text-muted">{service.description}</p>
-              <button className="mt-4 text-sm font-semibold text-accent transition hover:text-primary">
+              <Link
+                to={service.link}
+                className="mt-4 inline-block text-sm font-semibold text-accent transition hover:text-primary"
+              >
                 Tìm hiểu thêm →
-              </button>
+              </Link>
             </motion.div>
           ))}
         </div>

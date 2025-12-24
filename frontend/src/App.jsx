@@ -12,6 +12,10 @@ import ServicesPage from './pages/Services';
 import BlogPage from './pages/Blog';
 import AboutPage from './pages/About';
 import ServiceDetail from './pages/ServiceDetail';
+import ServiceBuySell from './pages/ServiceBuySell';
+import ServiceAuction from './pages/ServiceAuction';
+import ServiceWarranty from './pages/ServiceWarranty';
+import ServiceRepair from './pages/ServiceRepair';
 import ProductDetail from './pages/ProductDetail';
 import BlogDetail from './pages/BlogDetail';
 import CartPage from './pages/Cart';
@@ -103,6 +107,10 @@ function App() {
             <Route path="/categories" element={<CategoriesPage />} />
             <Route path="/brands" element={<BrandsPage />} />
             <Route path="/services" element={<ServicesPage />} />
+            <Route path="/dichvu/thu-mua-ky-gui" element={<ServiceBuySell />} />
+            <Route path="/dichvu/dau-gia-doi-tac" element={<ServiceAuction />} />
+            <Route path="/dichvu/hau-mai-bao-hanh" element={<ServiceWarranty />} />
+            <Route path="/dichvu/bao-duong-sua-chua" element={<ServiceRepair />} />
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<BlogDetail />} />
             <Route path="/about" element={<AboutPage />} />
