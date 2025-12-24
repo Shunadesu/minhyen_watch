@@ -17,7 +17,12 @@ const CategoriesPage = () => {
         setLoading(true);
         setError('');
         const baseUrl = import.meta.env.VITE_API_URL || '';
-        const res = await fetch(`${baseUrl}/api/categories?page=1&limit=100`);
+        const res = await fetch(`${baseUrl}/api/categories?limit=100`);
+        
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        
         const json = await res.json();
 
         if (!json.success) {
@@ -26,6 +31,7 @@ const CategoriesPage = () => {
 
         setCategories(json.data || []);
       } catch (err) {
+        console.error('Error fetching categories:', err);
         setError(err.message || 'Đã có lỗi xảy ra');
       } finally {
         setLoading(false);

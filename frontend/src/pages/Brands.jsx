@@ -17,13 +17,19 @@ const BrandsPage = () => {
         setLoading(true);
         setError('');
         const baseUrl = import.meta.env.VITE_API_URL || '';
-        const res = await fetch(`${baseUrl}/api/brands?page=1&limit=100`);
+        const res = await fetch(`${baseUrl}/api/brands?limit=100`);
+        
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        
         const json = await res.json();
         if (!json.success) {
           throw new Error(json.message || 'Không thể lấy thương hiệu');
         }
         setBrands(json.data || []);
       } catch (err) {
+        console.error('Error fetching brands:', err);
         setError(err.message || 'Đã có lỗi xảy ra');
       } finally {
         setLoading(false);
