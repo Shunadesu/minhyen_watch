@@ -51,7 +51,7 @@ const services = [
   },
   {
     slug: 'gia-bao-certificate-dam-bao-nguon-goc-dong-ho-chinh-hang',
-    title: 'Gia Bảo Preowned Certificate',
+    title: 'Minh Yên Preowned Certificate',
     description:
       'Chứng nhận nguồn gốc đồng hồ chính hãng, bảo vệ người mua bán trên thị trường thứ cấp.',
     url: 'https://giabaoluxury.com/gia-bao-certificate-dam-bao-nguon-goc-dong-ho-chinh-hang',
