@@ -50,7 +50,7 @@ const Footer = () => (
         <div>
           <h5 className="text-sm font-semibold uppercase tracking-wide text-white/80">Kết nối</h5>
           <ul className="mt-3 space-y-2 text-sm text-white/80">
-            <li>Email: info@giabaoluxury.com</li>
+            <li>Email: info@minhyenluxury.com</li>
             <li>Giờ mở cửa: 9h - 18h (T2 - T6)</li>
             <li>9h - 14h (T7) / 9h - 19h (CN HCM)</li>
           </ul>
