@@ -3,7 +3,6 @@ import {
   FiMenu,
   FiX,
   FiPhoneCall,
-  FiInstagram,
   FiFacebook,
   FiUser,
   FiChevronDown,
@@ -19,7 +18,7 @@ const navItems = [
   { label: 'Sản phẩm', to: '/products' },
   { label: 'Danh mục', to: '/categories' },
   { label: 'Thương hiệu', to: '/brands' },
-  { label: 'Dịch vụ', to: '/services' },
+  // { label: 'Dịch vụ', to: '/services' }, // Tạm thời ẩn
   { label: 'Blog', to: '/blog' },
   { label: 'Về chúng tôi', to: '/about' }
 ];
@@ -120,10 +119,6 @@ const Header = () => {
               </div>
             </div>
             <div className="flex items-center space-x-4">
-              <a href="#" className="inline-flex items-center space-x-1 transition hover:text-accent">
-                <FiInstagram size={14} />
-                <span>Instagram</span>
-              </a>
               <a
                 href="https://www.facebook.com/share/1Ejdxmccd3/?mibextid=wwXIfr"
                 target="_blank"
@@ -133,13 +128,14 @@ const Header = () => {
                 <FiFacebook size={14} />
                 <span>Facebook</span>
               </a>
-              <a href="#" className="transition hover:text-accent">
+              <Link to="/recruitment" className="transition hover:text-accent">
                 Tuyển dụng
-              </a>
-              <a href="#" className="inline-flex items-center space-x-1 transition hover:text-accent">
+              </Link>
+              {/* Ẩn đăng nhập nhưng giữ chức năng */}
+              {/* <a href="#" className="inline-flex items-center space-x-1 transition hover:text-accent">
                 <FiUser size={14} />
                 <span>Đăng nhập</span>
-              </a>
+              </a> */}
             </div>
           </div>
         </div>
@@ -171,49 +167,11 @@ const Header = () => {
               isHeaderSolid || !isHome ? 'text-primary' : 'text-white'
             } lg:flex`}
           >
-            {navItems
-              .filter((item) => item.label !== 'Dịch vụ')
-              .map((item) => (
-                <Link key={item.label} to={item.to} className="transition hover:text-accent">
-                  {item.label}
-                </Link>
-              ))}
-            <div
-              className="relative"
-              onMouseEnter={() => {
-                if (hoverTimeout.current) clearTimeout(hoverTimeout.current);
-                setServiceOpen(true);
-              }}
-              onMouseLeave={() => {
-                hoverTimeout.current = setTimeout(() => setServiceOpen(false), 180);
-              }}
-            >
-              <div className="inline-flex cursor-pointer items-center space-x-1 transition hover:text-accent">
-                <span>Dịch vụ</span>
-                <FiChevronDown size={14} />
-              </div>
-              <div
-                className={`pointer-events-auto absolute left-0 top-full z-20 mt-1 w-64 rounded-2xl border border-gray-100 bg-white p-3 shadow-xl transition ${
-                  serviceOpen ? 'visible opacity-100' : 'invisible opacity-0'
-                }`}
-              >
-                {serviceError && <p className="text-xs text-red-500">{serviceError}</p>}
-                {!serviceError && services.length === 0 && (
-                  <p className="text-xs text-gray-500">Đang tải dịch vụ...</p>
-                )}
-                <div className="space-y-2">
-                  {services.slice(0, 4).map((svc) => (
-                    <Link
-                      key={svc.slug}
-                      to={`/dichvu/${svc.slug}`}
-                      className="block rounded-lg px-2 py-2 text-sm text-primary hover:bg-gray-50"
-                    >
-                      {svc.title}
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            </div>
+            {navItems.map((item) => (
+              <Link key={item.label} to={item.to} className="transition hover:text-accent">
+                {item.label}
+              </Link>
+            ))}
             <a
               href="tel:0852458888"
               className="rounded-full bg-primary px-4 py-2 text-white transition hover:bg-primary/90"
@@ -257,16 +215,6 @@ const Header = () => {
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {item.label}
-                </Link>
-              ))}
-              {services.map((svc) => (
-                <Link
-                  key={svc.slug}
-                  to={`/dichvu/${svc.slug}`}
-                  className="rounded-md px-2 py-2 transition hover:bg-white/70"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  {svc.title}
                 </Link>
               ))}
               <a

@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { FiFacebook, FiInstagram } from 'react-icons/fi';
+import { FiFacebook } from 'react-icons/fi';
 import Header from './components/Header';
 import QuickOrderModal from './components/QuickOrderModal';
 import CartDrawer from './components/CartDrawer';
@@ -11,6 +11,7 @@ import BrandsPage from './pages/Brands';
 import ServicesPage from './pages/Services';
 import BlogPage from './pages/Blog';
 import AboutPage from './pages/About';
+import RecruitmentPage from './pages/Recruitment';
 import ServiceDetail from './pages/ServiceDetail';
 import ServiceBuySell from './pages/ServiceBuySell';
 import ServiceAuction from './pages/ServiceAuction';
@@ -63,12 +64,6 @@ const Footer = () => (
             >
               <FiFacebook />
             </a>
-            <a
-              href="#"
-              className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition hover:bg-white/20"
-            >
-              <FiInstagram />
-            </a>
           </div>
         </div>
       </div>
@@ -114,6 +109,7 @@ function App() {
             <Route path="/blog" element={<BlogPage />} />
             <Route path="/blog/:slug" element={<BlogDetail />} />
             <Route path="/about" element={<AboutPage />} />
+            <Route path="/recruitment" element={<RecruitmentPage />} />
             <Route path="/dichvu/:slug" element={<ServiceDetail />} />
           </Routes>
         </main>
